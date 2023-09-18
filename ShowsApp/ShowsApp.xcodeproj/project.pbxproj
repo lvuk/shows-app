@@ -51,8 +51,10 @@
 		5AE3CC522AB86236004D2ACD /* ShowsApp */ = {
 			isa = PBXGroup;
 			children = (
+				5AE3CC632AB86493004D2ACD /* Services */,
+				5AE3CC622AB863EE004D2ACD /* UI */,
+				5AE3CC612AB863E3004D2ACD /* Models */,
 				5AE3CC532AB86236004D2ACD /* ShowsAppApp.swift */,
-				5AE3CC552AB86236004D2ACD /* ContentView.swift */,
 				5AE3CC572AB86239004D2ACD /* Assets.xcassets */,
 				5AE3CC592AB86239004D2ACD /* Preview Content */,
 			);
@@ -65,6 +67,28 @@
 				5AE3CC5A2AB86239004D2ACD /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5AE3CC612AB863E3004D2ACD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5AE3CC622AB863EE004D2ACD /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				5AE3CC552AB86236004D2ACD /* ContentView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		5AE3CC632AB86493004D2ACD /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
