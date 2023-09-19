@@ -8,11 +8,11 @@
 import Foundation
 
 protocol NetworkingServiceProtocol {
-    func fetch(with request: Request, completion: @escaping (Result<Show, ErrorHandler>) -> Void)
+    func fetch(with request: Request, completion: @escaping (Result<[Show], ErrorHandler>) -> Void)
 }
 
 final class NetworkingService: ObservableObject, NetworkingServiceProtocol {
-    func fetch(with request: Request, completion: @escaping (Result<Show, ErrorHandler>) -> Void) {
+    func fetch(with request: Request, completion: @escaping (Result<[Show], ErrorHandler>) -> Void) {
         guard let urlRequest =  configureRequest(request) else { return }
         let urlSession: URLSession = URLSession.shared
         
@@ -20,12 +20,16 @@ final class NetworkingService: ObservableObject, NetworkingServiceProtocol {
         urlSession.dataTask(with: urlRequest) { [weak self] data, response, error in
             guard let httpResponse = response as? HTTPURLResponse else { return }
             
+            
             // Check for a successful HTTP response (status code 200)
             if httpResponse.statusCode >= 200 && httpResponse.statusCode <= 299 {
                 if let data = data {
                     // Parse the data
+                   
+                    
                     do {
-                        let json = try JSONDecoder().decode(Show.self, from: data)
+                        let json = try JSONDecoder().decode([Show].self, from: data)
+                        print(json)
                         completion(.success(json))
                     }
                     catch {
@@ -80,6 +84,7 @@ extension NetworkingService {
         if let query = request.query {
             urlRequest.url = URL(string: urlString.appending(query))
         }
+        
         
         return urlRequest
     }
