@@ -13,35 +13,48 @@ struct SearchView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                List {
-                    ForEach(viewModel.shows){ show in
-                        HStack {
-                            Image(systemName: "house")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 33, height: 33, alignment: .leading)
-                                .padding()
-                            
-                            VStack(alignment: .leading) {
-                                Text("\(show.name)")
-                                    .font(.headline)
+            ZStack {
+                Color.primaryBlack
+                
+                ScrollView {
+                    LazyVStack(alignment: .leading) {
+                        ForEach(viewModel.shows){ show in
+                            HStack {
+                                Image(systemName: "house")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 33, height: 33, alignment: .leading)
+                                    .padding()
+                                    
                                 
-                                Text(viewModel.getDate(from: show))
+                                VStack(alignment: .leading) {
+                                    Text("\(show.name)")
+                                        .font(.headline)
+                                    
+                                    Text(viewModel.getDate(from: show))
+                                        .font(.subheadline)
+                                        .opacity(0.5)
+                                    
+                                    Text(show.genres.joined(separator: ", "))
+                                        .font(.subheadline)
+                                        .opacity(0.5)
+                                }
                                 
-                                Text(show.genres.joined(separator: ", "))
-                                    .font(.subheadline)
                             }
-                            
+                            .padding(.horizontal)
                         }
                     }
                 }
-                .searchable(text: $searchText)
-                .onSubmit(of: .search) {
-                    viewModel.fetchData(query: searchText.trimmingCharacters(in: .whitespacesAndNewlines))
-                }
-                
             }
+            .searchable(text: $searchText)
+            .onSubmit(of: .search) {
+                viewModel.fetchData(query: searchText.trimmingCharacters(in: .whitespacesAndNewlines))
+            }
+            .onAppear {
+                viewModel.fetchData(query: "a")
+            }
+            .background(Color.primaryDarkGrey)
+            .foregroundColor(.primaryWhite)
         }
     }
 }
