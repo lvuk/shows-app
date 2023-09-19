@@ -8,16 +8,36 @@
 import SwiftUI
 
 struct SearchView: View {
+    @ObservedObject var viewModel = SearchViewModel()
     @State private var searchText = ""
     
     var body: some View {
         VStack {
             List {
-                Text("Static element")
+                ForEach(viewModel.shows){ show in
+                    HStack {
+                        Image(systemName: "house")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 33, height: 33, alignment: .leading)
+                            .padding()
+                        
+                        VStack(alignment: .leading) {
+                            Text("\(show.name)")
+                                .font(.headline)
+                            
+                            Text(show.genres.joined(separator: ", "))
+                                .font(.subheadline)
+                        }
+                        
+                    }
+                }
+            }
+            .searchable(text: $searchText)
+            .onSubmit(of: .search) {
+                viewModel.fetchData(query: searchText)
             }
         }
-        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
-        .navigationTitle("Search")
     }
 }
 

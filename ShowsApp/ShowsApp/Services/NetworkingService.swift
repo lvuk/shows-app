@@ -20,17 +20,14 @@ final class NetworkingService: ObservableObject, NetworkingServiceProtocol {
         urlSession.dataTask(with: urlRequest) { [weak self] data, response, error in
             guard let httpResponse = response as? HTTPURLResponse else { return }
             
-            
             // Check for a successful HTTP response (status code 200)
             if httpResponse.statusCode >= 200 && httpResponse.statusCode <= 299 {
                 if let data = data {
                     // Parse the data
-                   
-                    
                     do {
-                        let json = try JSONDecoder().decode([Show].self, from: data)
-                        print(json)
-                        completion(.success(json))
+                        let searchShowsJSON = try JSONDecoder().decode([SearchShow].self, from: data)
+                        let shows = searchShowsJSON.map({ $0.show })
+                        completion(.success(shows))
                     }
                     catch {
                         print("Error: \(error)")
@@ -84,7 +81,6 @@ extension NetworkingService {
         if let query = request.query {
             urlRequest.url = URL(string: urlString.appending(query))
         }
-        
         
         return urlRequest
     }

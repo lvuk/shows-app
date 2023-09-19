@@ -10,14 +10,23 @@ import SwiftUI
 
 final class SearchViewModel: ObservableObject {
     @ObservedObject var networkinService = NetworkingService()
-    @Published var showObject: Show?
-    @Published var shows = [Show]()
+    @Published var shows: [Show] = [Show]()
+    
+    /*
+    func getDate(show: Show) -> String {
+        let date = show.premiered.split(separator: "-")
+        let year = date[0]
+        
+        return String(year)
+    }
+     */
 }
 
+
 extension SearchViewModel{
-    func fetchData() {
+    func fetchData(query: String) {
         let request = Request(
-            path: "/search/shows?q=girls",
+            path: "/search/shows?q=\(query)",
             method: .get,
             type: .json,
             parameters: nil,
@@ -26,7 +35,10 @@ extension SearchViewModel{
         networkinService.fetch(with: request) { [weak self] result in
             switch result {
             case .success(let shows):
-                print("SUCCESS: \(shows)")
+                DispatchQueue.main.async {
+                    self?.shows = shows
+                    print("SUCCESS: \(String(describing: self?.shows))")
+                }
             case .failure(let error):
                 print("ERROR: \(error)")
             }

@@ -13,7 +13,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Button("Click me") {
-                viewModel.fetchData()
+                viewModel.fetchData(query: "girls")
             }
         }
         .padding()

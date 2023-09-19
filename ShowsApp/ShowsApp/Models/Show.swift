@@ -8,6 +8,10 @@
 import Foundation
 import SwiftUI
 
+struct SearchShow: Codable {
+    let show: Show
+}
+
 struct Show: Codable, Identifiable {
     struct Schedule: Codable {
         let time: String
@@ -20,5 +24,6 @@ struct Show: Codable, Identifiable {
     let type: String
     let language: String
     let genres: [String]
+    //let premiered: String
     let schedule: Schedule
 }
