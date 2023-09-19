@@ -24,6 +24,6 @@ struct Show: Codable, Identifiable {
     let type: String
     let language: String
     let genres: [String]
-    //let premiered: String
+    let premiered: String?
     let schedule: Schedule
 }

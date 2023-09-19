@@ -12,30 +12,35 @@ struct SearchView: View {
     @State private var searchText = ""
     
     var body: some View {
-        VStack {
-            List {
-                ForEach(viewModel.shows){ show in
-                    HStack {
-                        Image(systemName: "house")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 33, height: 33, alignment: .leading)
-                            .padding()
-                        
-                        VStack(alignment: .leading) {
-                            Text("\(show.name)")
-                                .font(.headline)
+        NavigationStack {
+            VStack {
+                List {
+                    ForEach(viewModel.shows){ show in
+                        HStack {
+                            Image(systemName: "house")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 33, height: 33, alignment: .leading)
+                                .padding()
                             
-                            Text(show.genres.joined(separator: ", "))
-                                .font(.subheadline)
+                            VStack(alignment: .leading) {
+                                Text("\(show.name)")
+                                    .font(.headline)
+                                
+                                Text(viewModel.getDate(from: show))
+                                
+                                Text(show.genres.joined(separator: ", "))
+                                    .font(.subheadline)
+                            }
+                            
                         }
-                        
                     }
                 }
-            }
-            .searchable(text: $searchText)
-            .onSubmit(of: .search) {
-                viewModel.fetchData(query: searchText)
+                .searchable(text: $searchText)
+                .onSubmit(of: .search) {
+                    viewModel.fetchData(query: searchText.trimmingCharacters(in: .whitespacesAndNewlines))
+                }
+                
             }
         }
     }

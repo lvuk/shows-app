@@ -12,14 +12,15 @@ final class SearchViewModel: ObservableObject {
     @ObservedObject var networkinService = NetworkingService()
     @Published var shows: [Show] = [Show]()
     
-    /*
-    func getDate(show: Show) -> String {
-        let date = show.premiered.split(separator: "-")
+    
+    func getDate(from show: Show) -> String {
+        guard let premiered = show.premiered else { return "N/A"}
+        let date = premiered.split(separator: "-")
         let year = date[0]
         
         return String(year)
     }
-     */
+     
 }
 
 
