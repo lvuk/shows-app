@@ -20,7 +20,10 @@ final class SearchViewModel: ObservableObject {
         
         return String(year)
     }
-     
+    
+    func getImageURL(from show: Show) -> URL? {
+        return URL(string: show.image?.original ?? "")
+    }
 }
 
 

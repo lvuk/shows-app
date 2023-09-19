@@ -17,14 +17,31 @@ struct SearchView: View {
                 Color.primaryBlack
                 
                 ScrollView {
-                    LazyVStack(alignment: .leading) {
+                    LazyVStack(alignment: .leading, spacing: 20) {
                         ForEach(viewModel.shows){ show in
                             HStack {
-                                Image(systemName: "house")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 33, height: 33, alignment: .leading)
-                                    .padding()
+                                
+                                AsyncImage(url: viewModel.getImageURL(from: show)) { phase in
+                                    switch phase {
+                                    case .empty:
+                                        ProgressView()
+                                    case .success(let image):
+                                        image
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fill)
+                                            .frame(width: 66, height: 44)
+                                    case .failure:
+                                        Image(systemName: "xmark.rectangle.portrait.fill")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 44, height: 44)
+                                    @unknown default:
+                                        EmptyView()
+                                    }
+                                    
+                                }
+                                 
+                                    
                                     
                                 
                                 VStack(alignment: .leading) {
@@ -41,9 +58,10 @@ struct SearchView: View {
                                 }
                                 
                             }
-                            .padding(.horizontal)
+                            .padding()
                         }
                     }
+                    .padding(.vertical)
                 }
             }
             .searchable(text: $searchText)

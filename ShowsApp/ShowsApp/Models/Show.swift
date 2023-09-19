@@ -18,6 +18,11 @@ struct Show: Codable, Identifiable {
         let days: [String]
     }
     
+    struct Image: Codable {
+        let medium: String
+        let original: String
+    }
+    
     let id: Int
     let url: String
     let name: String
@@ -26,4 +31,5 @@ struct Show: Codable, Identifiable {
     let genres: [String]
     let premiered: String?
     let schedule: Schedule
+    let image: Image?
 }
