@@ -17,11 +17,11 @@ struct SearchView: View {
                 Color.primaryBlack
                 
                 ScrollView {
-                    LazyVStack(alignment: .leading, spacing: 20) {
+                    LazyVStack(alignment: .leading, spacing: 10) {
                         ForEach(viewModel.shows){ show in
                             HStack {
                                 
-                                AsyncImage(url: viewModel.getImageURL(from: show)) { phase in
+                                AsyncImage(url: show.urlImage) { phase in
                                     switch phase {
                                     case .empty:
                                         ProgressView()
@@ -40,15 +40,13 @@ struct SearchView: View {
                                     }
                                     
                                 }
+                    
                                  
-                                    
-                                    
-                                
-                                VStack(alignment: .leading) {
+                                VStack(alignment: .leading, spacing: 5) {
                                     Text("\(show.name)")
                                         .font(.headline)
                                     
-                                    Text(viewModel.getDate(from: show))
+                                    Text(show.premieredYear)
                                         .font(.subheadline)
                                         .opacity(0.5)
                                     
@@ -61,7 +59,8 @@ struct SearchView: View {
                             .padding()
                         }
                     }
-                    .padding(.vertical)
+                    .padding(.top, 10)
+                    
                 }
             }
             .searchable(text: $searchText)
@@ -74,13 +73,13 @@ struct SearchView: View {
             .background(Color.primaryDarkGrey)
             .foregroundColor(.primaryWhite)
         }
+        .preferredColorScheme(.dark)
     }
+    
 }
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            SearchView()
-        }
+        SearchView()
     }
 }

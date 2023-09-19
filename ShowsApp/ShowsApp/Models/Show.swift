@@ -32,4 +32,17 @@ struct Show: Codable, Identifiable {
     let premiered: String?
     let schedule: Schedule
     let image: Image?
+    
+    var urlImage: URL? {
+        guard let image = image else { return nil }
+        return URL(string: image.medium)
+    }
+    
+    var premieredYear: String {
+        guard let premiered = premiered else { return "N/A"}
+        let date = premiered.split(separator: "-")
+        let year = date[0]
+        
+        return String(year)
+    }
 }
