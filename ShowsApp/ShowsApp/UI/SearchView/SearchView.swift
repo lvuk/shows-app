@@ -26,62 +26,28 @@ struct SearchView: View {
                 ZStack {
                     Color.primaryBlack
                     if viewModel.shows.isEmpty {
-                        Text("You fucked up!")
-                            .font(.title)
-                            .foregroundColor(.primaryLightGrey)
-                        Text("There is no movie named '\(searchText)'")
-                            .foregroundColor(.primaryLightGrey)
-                    } else {
-                        ScrollView {
-                            LazyVStack(alignment: .leading, spacing: 10) {
-                                ForEach(viewModel.shows){ show in
-                                    HStack {
-                                        AsyncImage(url: show.urlImage) { phase in
-                                            switch phase {
-                                            case .empty:
-                                                ProgressView()
-                                            case .success(let image):
-                                                image
-                                                    .resizable()
-                                                    .aspectRatio(contentMode: .fill)
-                                                    .frame(width: 66, height: 44)
-                                            case .failure:
-                                                Image(systemName: "xmark.rectangle.portrait.fill")
-                                                    .resizable()
-                                                    .scaledToFit()
-                                                    .frame(width: 44, height: 44)
-                                            @unknown default:
-                                                EmptyView()
-                                            }
-                                            
-                                        }
-                            
-                                         
-                                        VStack(alignment: .leading, spacing: 5) {
-                                            Text("\(show.name)")
-                                                .font(.headline)
-                                            
-                                            Text(show.premieredYear)
-                                                .font(.subheadline)
-                                                .opacity(0.5)
-                                            
-                                            Text(show.genres.joined(separator: ", "))
-                                                .font(.subheadline)
-                                                .opacity(0.5)
-                                        }
-                                        
-                                    }
-                                    .padding()
-                                }
-                            }
-                            .padding(.vertical, 10)
+                        VStack{
+                            Text("You fucked up!")
+                                .font(.title)
+                                .foregroundColor(.primaryLightGrey)
+                            Text("There is no movie named '\(searchText)'")
+                                .foregroundColor(.primaryLightGrey)
                         }
+                    } else {
+                       SearchListView(viewModel: viewModel)
                     }
                 }
             }
             .onAppear {
                 viewModel.fetchData(query: "a")
             }
+            .onChange(of: searchText, perform: { newText in
+                if(newText.isEmpty) {
+                    viewModel.fetchData(query: "a")
+                } else {
+                    viewModel.fetchData(query: newText)
+                }
+            })
             .onTapGesture {
                 //dismiss keyboard
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)

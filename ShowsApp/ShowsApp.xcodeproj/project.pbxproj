@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5A6167812AB9F5380041336A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6167802AB9F5380041336A /* Colors.swift */; };
 		5A6167842ABAD5D10041336A /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6167832ABAD5D10041336A /* SearchBarView.swift */; };
+		5A6167862ABAF0490041336A /* SearchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6167852ABAF0490041336A /* SearchListView.swift */; };
 		5AE3CC542AB86236004D2ACD /* ShowsAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE3CC532AB86236004D2ACD /* ShowsAppApp.swift */; };
 		5AE3CC562AB86236004D2ACD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE3CC552AB86236004D2ACD /* ContentView.swift */; };
 		5AE3CC582AB86239004D2ACD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AE3CC572AB86239004D2ACD /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		5A6167802AB9F5380041336A /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		5A6167832ABAD5D10041336A /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
+		5A6167852ABAF0490041336A /* SearchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListView.swift; sourceTree = "<group>"; };
 		5AE3CC502AB86236004D2ACD /* ShowsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShowsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AE3CC532AB86236004D2ACD /* ShowsAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsAppApp.swift; sourceTree = "<group>"; };
 		5AE3CC552AB86236004D2ACD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -49,6 +51,7 @@
 		5A6167822ABAD5790041336A /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				5A6167852ABAF0490041336A /* SearchListView.swift */,
 				5A6167832ABAD5D10041336A /* SearchBarView.swift */,
 			);
 			path = Components;
@@ -202,6 +205,7 @@
 				5A6167842ABAD5D10041336A /* SearchBarView.swift in Sources */,
 				5A6167812AB9F5380041336A /* Colors.swift in Sources */,
 				5AE3CC6F2AB9AC51004D2ACD /* SearchViewModel.swift in Sources */,
+				5A6167862ABAF0490041336A /* SearchListView.swift in Sources */,
 				5AE3CC652AB99DF6004D2ACD /* Show.swift in Sources */,
 				5AE3CC562AB86236004D2ACD /* ContentView.swift in Sources */,
 				5AE3CC542AB86236004D2ACD /* ShowsAppApp.swift in Sources */,
