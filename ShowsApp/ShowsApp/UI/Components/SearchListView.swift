@@ -44,10 +44,26 @@ struct SearchListView: View {
                                 .font(.subheadline)
                                 .opacity(0.5)
                             
+                            if let cast = viewModel.showCasts[show.id] {
+                                HStack{
+                                    ForEach(cast.prefix(2)) { actor in
+                                        Text(actor.name)
+                                            .font(.subheadline)
+                                            .opacity(0.5)
+                                    }
+                                    if cast.count > 2 {
+                                        Text("And more")
+                                            .font(.subheadline)
+                                            .opacity(0.7)
+                                    }
+                                }
+                            }
+                            
                             Text(show.genres.joined(separator: ", "))
                                 .font(.subheadline)
                                 .opacity(0.5)
                         }
+                        .padding(.horizontal, 1)
                         
                     }
                     .padding()

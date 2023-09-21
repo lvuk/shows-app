@@ -9,6 +9,7 @@ import Foundation
 
 protocol NetworkingServiceProtocol {
     func fetch(with request: Request, completion: @escaping (Result<[Show], ErrorHandler>) -> Void)
+    func fetchCast(with request: Request, completion: @escaping (Result<[Person], ErrorHandler>) -> Void)
 }
 
 final class NetworkingService: ObservableObject, NetworkingServiceProtocol {
@@ -28,6 +29,38 @@ final class NetworkingService: ObservableObject, NetworkingServiceProtocol {
                         let searchShowsJSON = try JSONDecoder().decode([SearchShow].self, from: data)
                         let shows = searchShowsJSON.map({ $0.show })
                         completion(.success(shows))
+                    }
+                    catch {
+                        print("Error: \(error)")
+                        completion(.failure(.cannotParse))
+                        return
+                    }
+                }
+            }
+            else {
+                print("Error: \(httpResponse.statusCode)")
+                completion(.failure(.notFound))
+            }
+        }
+        .resume()
+    }
+    
+    func fetchCast(with request: Request, completion: @escaping (Result<[Person], ErrorHandler>) -> Void) {
+        guard let urlRequest =  configureRequest(request) else { return }
+        let urlSession: URLSession = URLSession.shared
+        
+        // Create a data task
+        urlSession.dataTask(with: urlRequest) { [weak self] data, response, error in
+            guard let httpResponse = response as? HTTPURLResponse else { return }
+            
+            // Check for a successful HTTP response (status code 200)
+            if httpResponse.statusCode >= 200 && httpResponse.statusCode <= 299 {
+                if let data = data {
+                    // Parse the data
+                    do {
+                        let castPersonJSON = try JSONDecoder().decode([CastPerson].self, from: data)
+                        let cast = castPersonJSON.map({ $0.person })
+                        completion(.success(cast))
                     }
                     catch {
                         print("Error: \(error)")
