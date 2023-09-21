@@ -9,7 +9,25 @@ import SwiftUI
 
 struct RootView: View {
     var body: some View {
-        SearchView()
+        TabView {
+            
+            HomeView()
+                .tabItem {
+                    Label("Home", systemImage: "house")
+                }
+           
+            FavoritesView()
+                .tabItem {
+                    Label("Favorites", systemImage: "heart")
+                }
+            
+            SearchView()
+                .tabItem {
+                    Label("Search", systemImage: "magnifyingglass")
+                        .foregroundColor(.primaryLightGrey)
+                }
+        }
+        .preferredColorScheme(.dark)
     }
 }
 

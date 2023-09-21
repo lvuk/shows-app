@@ -63,6 +63,5 @@ struct SearchListComponent: View {
         }
         .padding(.horizontal)
         .padding(.vertical, 5)
-        
     }
 }

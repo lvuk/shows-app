@@ -15,10 +15,11 @@ struct SearchListView: View {
             LazyVStack(alignment: .leading, spacing: 10) {
                 ForEach(viewModel.shows){ show in
                     SearchListComponent(viewModel: viewModel, show: show)
+                        
                 }
             }
-            .padding(.vertical, 10)
         }
-        .preferredColorScheme(.dark)
+        .padding(.top, 10)
+        .padding(.bottom, 1)
     }
 }
