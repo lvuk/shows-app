@@ -11,6 +11,10 @@
 		5A6167842ABAD5D10041336A /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6167832ABAD5D10041336A /* SearchBarView.swift */; };
 		5A6167862ABAF0490041336A /* SearchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6167852ABAF0490041336A /* SearchListView.swift */; };
 		5A6167882ABC24B10041336A /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6167872ABC24B10041336A /* Person.swift */; };
+		5A61678A2ABC592F0041336A /* SearchListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6167892ABC592F0041336A /* SearchListComponent.swift */; };
+		5A61678C2ABC5D6C0041336A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A61678B2ABC5D6C0041336A /* AppDelegate.swift */; };
+		5A61678E2ABC5D8F0041336A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A61678D2ABC5D8F0041336A /* SceneDelegate.swift */; };
+		5A6167902ABC5DC90041336A /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A61678F2ABC5DC90041336A /* RootView.swift */; };
 		5AE3CC542AB86236004D2ACD /* ShowsAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE3CC532AB86236004D2ACD /* ShowsAppApp.swift */; };
 		5AE3CC562AB86236004D2ACD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE3CC552AB86236004D2ACD /* ContentView.swift */; };
 		5AE3CC582AB86239004D2ACD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AE3CC572AB86239004D2ACD /* Assets.xcassets */; };
@@ -27,6 +31,11 @@
 		5A6167832ABAD5D10041336A /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		5A6167852ABAF0490041336A /* SearchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListView.swift; sourceTree = "<group>"; };
 		5A6167872ABC24B10041336A /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		5A6167892ABC592F0041336A /* SearchListComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListComponent.swift; sourceTree = "<group>"; };
+		5A61678B2ABC5D6C0041336A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5A61678D2ABC5D8F0041336A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		5A61678F2ABC5DC90041336A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		5A6167912ABC5E330041336A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5AE3CC502AB86236004D2ACD /* ShowsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShowsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AE3CC532AB86236004D2ACD /* ShowsAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsAppApp.swift; sourceTree = "<group>"; };
 		5AE3CC552AB86236004D2ACD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,6 +64,7 @@
 			children = (
 				5A6167852ABAF0490041336A /* SearchListView.swift */,
 				5A6167832ABAD5D10041336A /* SearchBarView.swift */,
+				5A6167892ABC592F0041336A /* SearchListComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -78,10 +88,14 @@
 		5AE3CC522AB86236004D2ACD /* ShowsApp */ = {
 			isa = PBXGroup;
 			children = (
+				5A6167912ABC5E330041336A /* Info.plist */,
 				5AE3CC632AB86493004D2ACD /* Services */,
 				5AE3CC622AB863EE004D2ACD /* UI */,
 				5AE3CC612AB863E3004D2ACD /* Models */,
 				5AE3CC532AB86236004D2ACD /* ShowsAppApp.swift */,
+				5A61678F2ABC5DC90041336A /* RootView.swift */,
+				5A61678B2ABC5D6C0041336A /* AppDelegate.swift */,
+				5A61678D2ABC5D8F0041336A /* SceneDelegate.swift */,
 				5AE3CC572AB86239004D2ACD /* Assets.xcassets */,
 				5AE3CC592AB86239004D2ACD /* Preview Content */,
 			);
@@ -205,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AE3CC692AB9A66D004D2ACD /* NetworkingService.swift in Sources */,
+				5A61678E2ABC5D8F0041336A /* SceneDelegate.swift in Sources */,
 				5A6167842ABAD5D10041336A /* SearchBarView.swift in Sources */,
 				5A6167812AB9F5380041336A /* Colors.swift in Sources */,
 				5AE3CC6F2AB9AC51004D2ACD /* SearchViewModel.swift in Sources */,
@@ -212,9 +227,12 @@
 				5A6167862ABAF0490041336A /* SearchListView.swift in Sources */,
 				5AE3CC652AB99DF6004D2ACD /* Show.swift in Sources */,
 				5AE3CC562AB86236004D2ACD /* ContentView.swift in Sources */,
+				5A61678C2ABC5D6C0041336A /* AppDelegate.swift in Sources */,
 				5AE3CC542AB86236004D2ACD /* ShowsAppApp.swift in Sources */,
+				5A61678A2ABC592F0041336A /* SearchListComponent.swift in Sources */,
 				5AE3CC6D2AB9AA75004D2ACD /* SearchView.swift in Sources */,
 				5AE3CC672AB9A534004D2ACD /* NetworkConfiguration.swift in Sources */,
+				5A6167902ABC5DC90041336A /* RootView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,7 +363,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"ShowsApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = ShowsApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -373,7 +391,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"ShowsApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = ShowsApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

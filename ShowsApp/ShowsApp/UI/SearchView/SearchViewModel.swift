@@ -10,28 +10,24 @@ import SwiftUI
 
 final class SearchViewModel: ObservableObject {
     @ObservedObject var networkinService = NetworkingService()
+    @Published var searchText = ""
+    
     @Published var shows: [Show] = [Show]()
     @Published var showCasts: [Int: [Person]] = [:]
 }
 
 
 extension SearchViewModel{
-    func fetchData(query: String) {
-        let request = Request(
-            path: "/search/shows?q=\(query)",
-            method: .get,
-            type: .json,
-            parameters: nil,
-            query: nil)
-
-        networkinService.fetch(with: request) { [weak self] result in
+    func fetchSearchData(query: String) {
+        networkinService.fetchSearchData(query: query) { [weak self] result in
             switch result {
-            case .success(let shows):
+            case .success(let searchShows):
                 DispatchQueue.main.async {
-                    self?.shows = shows
+                    let shows = searchShows.map { $0.show }
                     for show in shows {
-                        self?.fetchCastData(id: show.id)
+                        self?.fetchCast(id: show.id)
                     }
+                    self?.shows = shows
                 }
                 print("SUCCESS: \(String(describing: self?.shows))")
             case .failure(let error):
@@ -40,19 +36,12 @@ extension SearchViewModel{
         }
     }
     
-    func fetchCastData(id: Int) {
-        let request = Request(
-            path: "/shows/\(id)/cast",
-            method: .get,
-            type: .json,
-            parameters: nil,
-            query: nil)
-        
-        networkinService.fetchCast(with: request) { [weak self] result in
+    func fetchCast(id: Int) {
+        networkinService.fetchCastData(id: id){ [weak self] result in
             switch result {
             case .success(let cast):
                 DispatchQueue.main.async {
-                    self?.showCasts[id] = cast
+                    self?.showCasts[id] = cast.map { $0.person }
                 }
                 print("SUCCESS: \(String(describing: cast))")
             case .failure(let error):

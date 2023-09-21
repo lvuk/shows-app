@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CastPerson: Codable {
+struct Cast: Codable {
     let person: Person
 }
 

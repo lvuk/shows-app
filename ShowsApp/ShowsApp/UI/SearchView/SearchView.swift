@@ -9,16 +9,15 @@ import SwiftUI
 
 struct SearchView: View {
     @ObservedObject var viewModel = SearchViewModel()
-    @State private var searchText = ""
     
     var body: some View {
         NavigationStack {
             VStack {
-                SearchBarView(searchText: $searchText) {
-                    if !searchText.isEmpty {
-                        viewModel.fetchData(query: searchText.trimmingCharacters(in: .whitespacesAndNewlines))
+                SearchBarView(searchText: $viewModel.searchText) {
+                    if !viewModel.searchText.isEmpty {
+                        viewModel.fetchSearchData(query: viewModel.searchText.trimmingCharacters(in: .whitespacesAndNewlines))
                     } else {
-                        viewModel.fetchData(query: "a")
+                        viewModel.fetchSearchData(query: "a")
                     }
                 }
                 .padding()
@@ -30,7 +29,7 @@ struct SearchView: View {
                             Text("You fucked up!")
                                 .font(.title)
                                 .foregroundColor(.primaryLightGrey)
-                            Text("There is no movie named '\(searchText)'")
+                            Text("There is no movie named '\(viewModel.searchText)'")
                                 .foregroundColor(.primaryLightGrey)
                         }
                     } else {
@@ -39,13 +38,13 @@ struct SearchView: View {
                 }
             }
             .onAppear {
-                viewModel.fetchData(query: "a")
+                viewModel.fetchSearchData(query: "a")
             }
-            .onChange(of: searchText, perform: { newText in
+            .onChange(of: viewModel.searchText, perform: { newText in
                 if(newText.isEmpty) {
-                    viewModel.fetchData(query: "a")
+                    viewModel.fetchSearchData(query: "a")
                 } else {
-                    viewModel.fetchData(query: newText)
+                    viewModel.fetchSearchData(query: newText)
                 }
             })
             .onTapGesture {

@@ -8,12 +8,14 @@
 import Foundation
 
 protocol NetworkingServiceProtocol {
-    func fetch(with request: Request, completion: @escaping (Result<[Show], ErrorHandler>) -> Void)
-    func fetchCast(with request: Request, completion: @escaping (Result<[Person], ErrorHandler>) -> Void)
+    func fetch<T:Codable>(of type: T.Type, with request: Request, completion: @escaping (Result<T, ErrorHandler>) -> Void) where T:Codable
+
+    func fetchSearchData(query: String, completion: @escaping (Result<[SearchShow], ErrorHandler>) -> Void)
+    func fetchCastData(id: Int, completion: @escaping (Result<[Cast], ErrorHandler>) -> Void)
 }
 
 final class NetworkingService: ObservableObject, NetworkingServiceProtocol {
-    func fetch(with request: Request, completion: @escaping (Result<[Show], ErrorHandler>) -> Void) {
+    func fetch<T:Codable>(of type: T.Type, with request: Request, completion: @escaping (Result<T, ErrorHandler>) -> Void) where T:Codable {
         guard let urlRequest =  configureRequest(request) else { return }
         let urlSession: URLSession = URLSession.shared
         
@@ -26,9 +28,8 @@ final class NetworkingService: ObservableObject, NetworkingServiceProtocol {
                 if let data = data {
                     // Parse the data
                     do {
-                        let searchShowsJSON = try JSONDecoder().decode([SearchShow].self, from: data)
-                        let shows = searchShowsJSON.map({ $0.show })
-                        completion(.success(shows))
+                        let json = try JSONDecoder().decode(T.self, from: data)
+                        completion(.success(json))
                     }
                     catch {
                         print("Error: \(error)")
@@ -45,37 +46,46 @@ final class NetworkingService: ObservableObject, NetworkingServiceProtocol {
         .resume()
     }
     
-    func fetchCast(with request: Request, completion: @escaping (Result<[Person], ErrorHandler>) -> Void) {
-        guard let urlRequest =  configureRequest(request) else { return }
-        let urlSession: URLSession = URLSession.shared
+    func fetchSearchData(query: String, completion: @escaping (Result<[SearchShow], ErrorHandler>) -> Void) {
+        let request = Request(
+            path: "/search/shows?q=",
+            method: .get,
+            type: .json,
+            parameters: nil,
+            query: query)
         
-        // Create a data task
-        urlSession.dataTask(with: urlRequest) { [weak self] data, response, error in
-            guard let httpResponse = response as? HTTPURLResponse else { return }
-            
-            // Check for a successful HTTP response (status code 200)
-            if httpResponse.statusCode >= 200 && httpResponse.statusCode <= 299 {
-                if let data = data {
-                    // Parse the data
-                    do {
-                        let castPersonJSON = try JSONDecoder().decode([CastPerson].self, from: data)
-                        let cast = castPersonJSON.map({ $0.person })
-                        completion(.success(cast))
-                    }
-                    catch {
-                        print("Error: \(error)")
-                        completion(.failure(.cannotParse))
-                        return
-                    }
-                }
-            }
-            else {
-                print("Error: \(httpResponse.statusCode)")
-                completion(.failure(.notFound))
+        fetch(of: [SearchShow].self, with: request) { result in
+            switch result {
+            case .success(let searchShows):
+                print("SUCCESS: search shows passed")
+                completion(.success(searchShows))
+            case .failure(let error):
+                print("ERROR: \(error)")
             }
         }
-        .resume()
     }
+    
+    func fetchCastData(id: Int, completion: @escaping (Result<[Cast], ErrorHandler>) -> Void) {
+        let request = Request(
+            path: "/shows/\(id)/cast",
+            method: .get,
+            type: .json,
+            parameters: nil,
+            query: nil)
+        
+        fetch(of: [Cast].self, with: request) { result in
+            switch result {
+            case .success(let cast):
+                print("SUCCESS: cast passed")
+                completion(.success(cast))
+            case .failure(let error):
+                print("ERROR: \(error)")
+            }
+        }
+        
+    }
+    
+
 }
 
 extension NetworkingService {
