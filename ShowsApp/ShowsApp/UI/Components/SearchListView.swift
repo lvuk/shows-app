@@ -23,3 +23,5 @@ struct SearchListView: View {
         .padding(.bottom, 1)
     }
 }
+
+
