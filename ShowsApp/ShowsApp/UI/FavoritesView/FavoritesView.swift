@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct FavoritesView: View {
+    @ObservedObject var viewModel = FavoritesViewModel()
     var body: some View {
-        Text("FAVORITES")
+            Text("FAVORITES")
     }
+        
 }
 
 struct FavoritesView_Previews: PreviewProvider {

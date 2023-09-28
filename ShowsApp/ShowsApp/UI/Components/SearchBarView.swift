@@ -23,6 +23,7 @@ struct SearchBarView: View {
                 .focused($isFocused)
                 .submitLabel(.search)
                 .onSubmit(action)
+//                .accentColor(.primaryDarkGrey)
             
             if isFocused {
                 Button {
@@ -41,6 +42,9 @@ struct SearchBarView: View {
         .overlay {
             RoundedRectangle(cornerRadius: 15)
                 .stroke(.gray, lineWidth: 1)
+        }
+        .onTapGesture {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
 
     }

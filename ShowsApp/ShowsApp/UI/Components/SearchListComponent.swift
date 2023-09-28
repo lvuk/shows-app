@@ -12,56 +12,67 @@ struct SearchListComponent: View {
     let show: Show
     
     var body: some View {
-        HStack {
-            if let imageURL = show.urlImage {
-                AsyncImage(url: imageURL) { phase in
-                    switch phase {
-                    case .empty:
-                        ProgressView()
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 64, height: 84)
-                    case .failure:
-                        Image(systemName: "xmark.rectangle.portrait.fill")
+        Button {
+            //do smth
+            print("tapped")
+            viewModel.onShowTapped?(show)
+        } label: {
+            HStack {
+                if let imageURL = show.urlImage {
+                    AsyncImage(url: imageURL) { phase in
+                        switch phase {
+                        case .empty:
+                            ProgressView()
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 64, height: 84)
+                        case .failure:
+                            Image(systemName: "xmark.rectangle.portrait.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 64, height: 84)
+                        @unknown default:
+                            EmptyView()
+                        }
+                        
+                    }
+                } else {
+                    Image(systemName: "xmark.rectangle.portrait.fill")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 64, height: 84)
-                    @unknown default:
-                        EmptyView()
-                    }
-                    
                 }
-            } else {
-                Image(systemName: "xmark.rectangle.portrait.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 64, height: 84)
-            }
 
-             
-            VStack(alignment: .leading, spacing: 5) {
-                Text("\(show.name)")
-                    .font(.headline)
-                
-                Text(show.premieredYear)
-                    .font(.subheadline)
-                    .opacity(0.5)
-                
-                if let cast = viewModel.showCasts[show.id] {
-                    HStack{
-                        ForEach(cast.prefix(2)) { actor in
-                            Text(actor.name)
-                                .font(.subheadline)
-                                .opacity(0.5)
+                 
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("\(show.name)")
+                        .font(.headline)
+                    
+                    Text(show.premieredYear)
+                        .font(.subheadline)
+                        .opacity(0.5)
+                    
+                    if let cast = viewModel.showCasts[show.id] {
+                        HStack{
+                            ForEach(cast.prefix(2)) { actor in
+                                Text(actor.name)
+                                    .font(.subheadline)
+                                    .opacity(0.5)
+                            }
                         }
                     }
                 }
+                .padding(.horizontal, 1)
+                
+                Spacer()
+                
+                Image(systemName: "chevron.right")
+                    .foregroundColor(.primaryLightGrey)
             }
-            .padding(.horizontal, 1)
+            .padding(.horizontal)
+            .padding(.vertical, 5)
         }
-        .padding(.horizontal)
-        .padding(.vertical, 5)
     }
 }

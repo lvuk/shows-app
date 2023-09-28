@@ -14,6 +14,8 @@ final class SearchViewModel: ObservableObject {
     
     @Published var shows: [Show] = [Show]()
     @Published var showCasts: [Int: [Person]] = [:]
+    
+    var onShowTapped: ((Show) -> Void)?
 }
 
 

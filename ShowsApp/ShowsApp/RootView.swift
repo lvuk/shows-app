@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct RootView: View {
+    @StateObject private var searchCoordinator = SearchCoordinator()
+    
     var body: some View {
         TabView {
             

@@ -54,12 +54,13 @@ struct SearchView: View {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
         .background(Color.primaryDarkGrey)
-        .foregroundColor(.primaryWhite)
+        .foregroundColor(.white)
+        
     }
 }
 
-struct SearchView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchView()
-    }
-}
+//struct SearchView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SearchView()
+//    }
+//}
