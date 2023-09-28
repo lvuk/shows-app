@@ -14,4 +14,15 @@ struct Cast: Codable {
 struct Person: Identifiable, Codable {
     let id: Int
     let name: String
+    let image: PersonImage?
+    
+    var urlMediumImage: URL? {
+        guard let image = image else { return nil }
+        return URL(string: image.medium)
+    }
+    
+    var urlOriginalImage: URL? {
+        guard let image = image else { return nil }
+        return URL(string: image.original)
+    }
 }

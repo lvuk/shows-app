@@ -18,7 +18,7 @@ struct SearchListComponent: View {
             viewModel.onShowTapped?(show)
         } label: {
             HStack {
-                if let imageURL = show.urlImage {
+                if let imageURL = show.urlMediumImage {
                     AsyncImage(url: imageURL) { phase in
                         switch phase {
                         case .empty:

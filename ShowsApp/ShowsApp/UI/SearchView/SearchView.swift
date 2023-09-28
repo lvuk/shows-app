@@ -19,7 +19,7 @@ struct SearchView: View {
                     viewModel.fetchSearchData(query: "a")
                 }
             }
-            .padding()
+            .padding(.bottom)
             
             Spacer()
             
@@ -40,7 +40,11 @@ struct SearchView: View {
             }
         }
         .onAppear {
-            viewModel.fetchSearchData(query: "a")
+            if viewModel.searchText.isEmpty {
+                viewModel.fetchSearchData(query: "a")
+            } else {
+                viewModel.fetchSearchData(query: viewModel.searchText)
+            }
         }
         .onChange(of: viewModel.searchText, perform: { newText in
             if(newText.isEmpty) {

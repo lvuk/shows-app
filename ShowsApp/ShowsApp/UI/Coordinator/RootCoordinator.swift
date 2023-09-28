@@ -9,7 +9,27 @@ import Foundation
 import UIKit
 import SwiftUI
 
-final class BaseNavigationController: UINavigationController {}
+final class BaseNavigationController: UINavigationController {
+    
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.backgroundColor = UIColor(named: "PrimaryDarkGrey")
+        navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        
+
+        self.navigationBar.standardAppearance = navigationBarAppearance
+        self.navigationBar.scrollEdgeAppearance = navigationBarAppearance
+        self.navigationBar.compactAppearance = navigationBarAppearance
+        self.navigationBar.compactScrollEdgeAppearance = navigationBarAppearance
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+}
+
 
 final class RootCoordinator: Coordinator {
     
@@ -34,9 +54,9 @@ final class RootCoordinator: Coordinator {
         let homeController = homeCoordinator.start()
         
         
-        searchController.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 2)
-        favoritesController.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(systemName: "heart"), tag: 1)
-        homeController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
+        searchController.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), selectedImage: UIImage(systemName: "magnifyingglass.circle.fill"))
+        favoritesController.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(systemName: "heart"), selectedImage: UIImage(systemName: "heart.fill"))
+        homeController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
         
         
         tabBarController.viewControllers = [homeController, favoritesController, searchController]
@@ -45,8 +65,15 @@ final class RootCoordinator: Coordinator {
         //icons & background
         let tabBarAppearance = UITabBarAppearance()
         
+//        tabBarController.tabBar.backgroundColor = UIColor(named: "PrimaryDarkGrey")
+        
+        tabBarAppearance.backgroundColor = UIColor(named: "PrimaryDarkGrey")
+        
         tabBarAppearance.stackedLayoutAppearance.normal.iconColor = UIColor(named: "PrimaryLightGrey")
         tabBarAppearance.stackedLayoutAppearance.selected.iconColor = UIColor(named: "PrimaryYellow")
+        
+        tabBarController.tabBar.standardAppearance = tabBarAppearance
+        tabBarController.tabBar.scrollEdgeAppearance = tabBarAppearance
     
         //text
         let textAttributesNormal: [NSAttributedString.Key: Any] = [
