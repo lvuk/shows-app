@@ -14,34 +14,12 @@ struct DetailView: View {
     var body: some View {
         ScrollView {
             VStack{
-                if let imageURL = show.urlOriginalImage {
-                    AsyncImage(url: imageURL) { phase in
-                        switch phase {
-                        case .empty:
-                            ProgressView()
-                        case .success(let image):
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .ignoresSafeArea()
-                                
-                        case .failure:
-                            Image(systemName: "xmark.rectangle.portrait.fill")
-                                .resizable()
-                                .scaledToFit()
-                        @unknown default:
-                            EmptyView()
-                        }
-                        
-                    }
-                } else {
-                    Image(systemName: "xmark.rectangle.portrait.fill")
-                            .resizable()
-                            .scaledToFit()
-                }
+                AsyncImageDetailMain(show: show)
+                
                 Text("\(show.summary ?? "" )")
                     .font(.footnote)
                     .padding(.vertical, 3)
+                    .padding(.horizontal, 10)
                 
                 HStack {
                     Text("Cast")
@@ -55,6 +33,7 @@ struct DetailView: View {
                     .foregroundColor(.primaryYellow)
                     .font(.body)
                 }
+                .padding(.horizontal, 10)
             }
             
                 
@@ -62,48 +41,15 @@ struct DetailView: View {
                 HStack{
                     ForEach(viewModel.cast) { actor in
                         VStack {
-                            if let imageURL = actor.urlMediumImage {
-                                AsyncImage(url: imageURL) { phase in
-                                    switch phase {
-                                    case .empty:
-                                        ProgressView()
-                                    case .success(let image):
-                                        image
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .ignoresSafeArea()
-                                            .frame(width: 100, height: 100)
-                                            
-                                    case .failure:
-                                        Image(systemName: "xmark.rectangle.portrait.fill")
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .ignoresSafeArea()
-                                            .frame(width: 100, height: 100)
-                                    @unknown default:
-                                        EmptyView()
-                                    }
-                                    
-                                }
-                            } else {
-                                Image(systemName: "xmark.rectangle.portrait.fill")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .ignoresSafeArea()
-                                    .frame(width: 100, height: 100)
-                            }
+                            AsyncImageDetailViewCast(actor: actor)
                             Text(actor.name)
                                 .font(.subheadline)
                         }
-                        
                     }
                 }
                 .padding(.vertical, 10)
-//                .padding(.bottom, 5)
-                
                 .background(Color.primaryDarkGrey)
-                
-                
+
             }
         }
         .background(Color.black)
@@ -113,8 +59,7 @@ struct DetailView: View {
         .onAppear {
             viewModel.fetchCast(id: show.id)
             print(viewModel.cast)
-            print(show.id
-            )
+            print(show.id)
         }
         .preferredColorScheme(.dark)
         

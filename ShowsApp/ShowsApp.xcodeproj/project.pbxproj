@@ -27,6 +27,8 @@
 		5A6167AC2AC566050041336A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6167AB2AC566050041336A /* HomeViewModel.swift */; };
 		5A6167AE2AC566370041336A /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6167AD2AC566370041336A /* HomeCoordinator.swift */; };
 		5A6167B02AC59F4D0041336A /* CustomAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6167AF2AC59F4D0041336A /* CustomAsyncImage.swift */; };
+		5A6167B22ACAC1360041336A /* AsyncImageDetailMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6167B12ACAC1360041336A /* AsyncImageDetailMain.swift */; };
+		5A6167B82ACAC2390041336A /* AsyncImageDetailViewCast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6167B72ACAC2390041336A /* AsyncImageDetailViewCast.swift */; };
 		5AE3CC542AB86236004D2ACD /* ShowsAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE3CC532AB86236004D2ACD /* ShowsAppApp.swift */; };
 		5AE3CC562AB86236004D2ACD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE3CC552AB86236004D2ACD /* ContentView.swift */; };
 		5AE3CC582AB86239004D2ACD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AE3CC572AB86239004D2ACD /* Assets.xcassets */; };
@@ -60,6 +62,8 @@
 		5A6167AB2AC566050041336A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		5A6167AD2AC566370041336A /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		5A6167AF2AC59F4D0041336A /* CustomAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAsyncImage.swift; sourceTree = "<group>"; };
+		5A6167B12ACAC1360041336A /* AsyncImageDetailMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageDetailMain.swift; sourceTree = "<group>"; };
+		5A6167B72ACAC2390041336A /* AsyncImageDetailViewCast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageDetailViewCast.swift; sourceTree = "<group>"; };
 		5AE3CC502AB86236004D2ACD /* ShowsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShowsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AE3CC532AB86236004D2ACD /* ShowsAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsAppApp.swift; sourceTree = "<group>"; };
 		5AE3CC552AB86236004D2ACD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -86,10 +90,9 @@
 		5A6167822ABAD5790041336A /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				5A6167B42ACAC1BD0041336A /* DetailViewComponents */,
+				5A6167B32ACAC1AE0041336A /* SearchViewComponents */,
 				5A6167802AB9F5380041336A /* Colors.swift */,
-				5A6167852ABAF0490041336A /* SearchListView.swift */,
-				5A6167832ABAD5D10041336A /* SearchBarView.swift */,
-				5A6167892ABC592F0041336A /* SearchListComponent.swift */,
 				5A6167AF2AC59F4D0041336A /* CustomAsyncImage.swift */,
 			);
 			path = Components;
@@ -131,6 +134,25 @@
 				5A6167A22AC42F010041336A /* DetailsViewModel.swift */,
 			);
 			path = DetailView;
+			sourceTree = "<group>";
+		};
+		5A6167B32ACAC1AE0041336A /* SearchViewComponents */ = {
+			isa = PBXGroup;
+			children = (
+				5A6167852ABAF0490041336A /* SearchListView.swift */,
+				5A6167832ABAD5D10041336A /* SearchBarView.swift */,
+				5A6167892ABC592F0041336A /* SearchListComponent.swift */,
+			);
+			path = SearchViewComponents;
+			sourceTree = "<group>";
+		};
+		5A6167B42ACAC1BD0041336A /* DetailViewComponents */ = {
+			isa = PBXGroup;
+			children = (
+				5A6167B12ACAC1360041336A /* AsyncImageDetailMain.swift */,
+				5A6167B72ACAC2390041336A /* AsyncImageDetailViewCast.swift */,
+			);
+			path = DetailViewComponents;
 			sourceTree = "<group>";
 		};
 		5AE3CC472AB86236004D2ACD = {
@@ -293,6 +315,7 @@
 				5A6167812AB9F5380041336A /* Colors.swift in Sources */,
 				5AE3CC6F2AB9AC51004D2ACD /* SearchViewModel.swift in Sources */,
 				5A6167972ABC6B8B0041336A /* HomeView.swift in Sources */,
+				5A6167B82ACAC2390041336A /* AsyncImageDetailViewCast.swift in Sources */,
 				5A6167882ABC24B10041336A /* Person.swift in Sources */,
 				5A6167A32AC42F010041336A /* DetailsViewModel.swift in Sources */,
 				5A6167B02AC59F4D0041336A /* CustomAsyncImage.swift in Sources */,
@@ -312,6 +335,7 @@
 				5A61679E2AC427220041336A /* SearchCoordinator.swift in Sources */,
 				5AE3CC672AB9A534004D2ACD /* NetworkConfiguration.swift in Sources */,
 				5A6167902ABC5DC90041336A /* RootView.swift in Sources */,
+				5A6167B22ACAC1360041336A /* AsyncImageDetailMain.swift in Sources */,
 				5A61679C2AC4262A0041336A /* RootCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

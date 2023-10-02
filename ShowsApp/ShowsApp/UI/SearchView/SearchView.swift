@@ -27,7 +27,7 @@ struct SearchView: View {
                 Color.primaryBlack
                 if viewModel.shows.isEmpty {
                     VStack{
-                        Text("You fucked up!")
+                        Text("You messed up!")
                             .font(.title)
                             .foregroundColor(.primaryLightGrey)
                         Text("There is no movie named '\(viewModel.searchText)'")
