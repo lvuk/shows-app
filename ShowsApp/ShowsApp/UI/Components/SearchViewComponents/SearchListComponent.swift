@@ -23,6 +23,7 @@ struct SearchListComponent: View {
                         switch phase {
                         case .empty:
                             ProgressView()
+                                .frame(width: 64, height: 84)
                         case .success(let image):
                             image
                                 .resizable()
@@ -32,7 +33,7 @@ struct SearchListComponent: View {
                             Image(systemName: "xmark.rectangle.portrait.fill")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 64, height: 84)
+                                .frame(width: 12, height: 12)
                         @unknown default:
                             EmptyView()
                         }
@@ -42,6 +43,7 @@ struct SearchListComponent: View {
                     Image(systemName: "xmark.rectangle.portrait.fill")
                             .resizable()
                             .scaledToFit()
+                            .frame(width: 44, height: 44)
                             .frame(width: 64, height: 84)
                 }
 

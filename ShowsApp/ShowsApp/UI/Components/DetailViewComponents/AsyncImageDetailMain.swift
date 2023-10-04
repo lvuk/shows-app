@@ -34,6 +34,8 @@ struct AsyncImageDetailMain: View {
             Image(systemName: "xmark.rectangle.portrait.fill")
                     .resizable()
                     .scaledToFit()
+                    .frame(width: 80, height: 120)
+                    .frame(height: 400)
         }
     }
 }

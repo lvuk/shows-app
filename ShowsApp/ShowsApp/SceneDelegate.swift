@@ -25,6 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let rootCoordinator = RootCoordinator()
         window = UIWindow(windowScene: windowScene)
+        window?.overrideUserInterfaceStyle = .dark
         window?.rootViewController = rootCoordinator.start()
         window?.makeKeyAndVisible()
     }

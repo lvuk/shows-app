@@ -14,15 +14,15 @@ final class BaseNavigationController: UINavigationController {
     init() {
         super.init(nibName: nil, bundle: nil)
         
-        let navigationBarAppearance = UINavigationBarAppearance()
-        navigationBarAppearance.backgroundColor = UIColor(named: "PrimaryDarkGrey")
-        navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-        
-
-        self.navigationBar.standardAppearance = navigationBarAppearance
-        self.navigationBar.scrollEdgeAppearance = navigationBarAppearance
-        self.navigationBar.compactAppearance = navigationBarAppearance
-        self.navigationBar.compactScrollEdgeAppearance = navigationBarAppearance
+//        let navigationBarAppearance = UINavigationBarAppearance()
+//        navigationBarAppearance.backgroundColor = UIColor(named: "PrimaryDarkBlack")
+//        navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+//
+//
+//        self.navigationBar.standardAppearance = navigationBarAppearance
+//        self.navigationBar.scrollEdgeAppearance = navigationBarAppearance
+//        self.navigationBar.compactAppearance = navigationBarAppearance
+//        self.navigationBar.compactScrollEdgeAppearance = navigationBarAppearance
     }
     
     required init?(coder aDecoder: NSCoder) {

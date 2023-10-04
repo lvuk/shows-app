@@ -15,7 +15,6 @@ struct SearchListView: View {
             LazyVStack(alignment: .leading, spacing: 10) {
                 ForEach(viewModel.shows){ show in
                     SearchListComponent(viewModel: viewModel, show: show)
-                        
                 }
             }
         }

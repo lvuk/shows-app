@@ -14,14 +14,20 @@ struct DetailView: View {
     var body: some View {
         ScrollView {
             VStack{
-                AsyncImageDetailMain(show: show)
+                ZStack(alignment: .topLeading){
+                    AsyncImageDetailMain(show: show)
+                    FavoriteComponent()
+                        .onTapGesture {
+                            //
+                        }
+                }
                 
-                Text("\(show.summary ?? "" )")
+                Text("\(show.summary?.removeHTMLTag() ?? "" )")
                     .font(.footnote)
                     .padding(.vertical, 3)
                     .padding(.horizontal, 10)
                 
-                HStack {
+                HStack(alignment: .lastTextBaseline) {
                     Text("Cast")
                         .font(.title3.bold())
                         
@@ -30,32 +36,40 @@ struct DetailView: View {
                     Button("Show all") {
                         //do smth
                     }
-                    .foregroundColor(.primaryYellow)
                     .font(.body)
+                    .disabled(viewModel.cast.isEmpty)
                 }
                 .padding(.horizontal, 10)
             }
             
+            if viewModel.cast.isEmpty {
+                Text("No information to display")
+                    .padding()
+                    .opacity(0.5)
                 
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack{
-                    ForEach(viewModel.cast) { actor in
-                        VStack {
-                            AsyncImageDetailViewCast(actor: actor)
-                            Text(actor.name)
-                                .font(.subheadline)
+            } else {
+                ZStack{
+                    Color.primaryDarkGrey
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack{
+                            ForEach(viewModel.cast) { actor in
+                                VStack {
+                                    AsyncImageDetailViewCast(actor: actor)
+                                    Text(actor.name)
+                                        .font(.subheadline)
+                                }
+                            }
                         }
+                        .padding(.vertical, 10)
+                        
+
                     }
                 }
-                .padding(.vertical, 10)
-                .background(Color.primaryDarkGrey)
-
             }
         }
         .background(Color.black)
         .navigationTitle(show.name)
-        .foregroundColor(.white)
-        .toolbarBackground(Color.primaryDarkGrey, for: .navigationBar)
+        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             viewModel.fetchCast(id: show.id)
             print(viewModel.cast)

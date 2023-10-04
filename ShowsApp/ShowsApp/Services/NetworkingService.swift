@@ -85,6 +85,27 @@ final class NetworkingService: ObservableObject, NetworkingServiceProtocol {
         
     }
     
+    func fetchScheduleData(date: String, completion: @escaping (Result<[ScheduleShow], ErrorHandler>) -> Void) {
+        let request = Request(
+            path: "/schedule?country=US&date=\(date)",
+            method: .get,
+            type: .json,
+            parameters: nil,
+            query: nil)
+        
+        fetch(of: [ScheduleShow].self, with: request) { result in
+            switch result {
+            case .success(let response):
+                print("SUCCESS: schedule passed")
+                completion(.success(response))
+            case .failure(let error):
+                print("ERROR: \(error)")
+            }
+        }
+    }
+    
+    
+    
 
 }
 

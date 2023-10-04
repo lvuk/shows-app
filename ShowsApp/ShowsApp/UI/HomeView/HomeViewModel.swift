@@ -10,5 +10,53 @@ import UIKit
 import SwiftUI
 
 final class HomeViewModel: ObservableObject {
+    @ObservedObject var networkingService = NetworkingService()
     
+    @Published var shows: [Show] = [Show]()
+    @Published var schedule: [Show] = [Show]()
+    
+    var onShowTapped: ((Show) -> Void)?
+    
+    func getDate() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let today = dateFormatter.string(from: Date())
+        
+        return today
+    }
+}
+
+extension HomeViewModel {
+    func fetchSearchData(query: String) {
+        networkingService.fetchSearchData(query: query) { [weak self] result in
+            switch result {
+            case .success(let searchShows):
+                DispatchQueue.main.async {
+                    self?.shows = searchShows.map { $0.show }
+                }
+//                print("SUCCESS: \(String(describing: self?.shows))")
+            case .failure(let error):
+                print("ERROR: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func fetchScheduleData(date: String) {
+        networkingService.fetchScheduleData(date: date) { [weak self] result in
+            switch result {
+            case .success(let scheduleShowsResponse):
+                DispatchQueue.main.async {
+                    let shows = scheduleShowsResponse.map { $0.show }
+                    
+                    for i in 0..<shows.count {
+                        var scheduleShow = shows[i]
+                        scheduleShow.airtime = scheduleShowsResponse[i].airtime
+                        self?.schedule.append(scheduleShow)
+                    }
+                }
+            case .failure(let error):
+                print("ERROR: \(error.localizedDescription)")
+            }
+        }
+    }
 }

@@ -15,3 +15,10 @@ extension Color {
     static let primaryWhite = Color("PrimaryWhite")
     static let primaryYellow = Color("PrimaryYellow")
 }
+
+extension String {
+   func removeHTMLTag() -> String {
+       return self.replacingOccurrences(of: "<[^>]+>", with: "", options: String.CompareOptions.regularExpression, range: nil)
+    }
+
+}

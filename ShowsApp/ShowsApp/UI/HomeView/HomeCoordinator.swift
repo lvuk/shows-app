@@ -18,13 +18,35 @@ final class HomeCoordinator: Coordinator {
     }
     
     private func createHomeController() -> UIViewController {
-        
-        let vm = HomeViewModel()
-        let homeView = HomeView(viewModel: vm)
+        let viewModel = HomeViewModel()
+        let homeView = HomeView(viewModel: viewModel)
         let vc = UIHostingController(rootView: homeView)
+        
+        viewModel.onShowTapped = { show in
+            print("Tu sam")
+            _ = self.createDetailsView(of: show)
+            print("da")
+        }
+        
+        navigationController.navigationBar.prefersLargeTitles = true
+//        navigationController.isToolbarHidden = false
+        
+//        let showAllButton = UIBarButtonItem(title: "Show all", style: .plain, target: self, action: nil)
+        
+        navigationController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: nil)
+        
+        navigationController.pushViewController(vc, animated: true)
+        return navigationController
+    }
+    
+    private func createDetailsView(of show: Show) -> UIViewController {
+        
+        let vm = DetailsViewModel()
+        let detailsView = DetailView(viewModel: vm, show: show)
+        let vc = UIHostingController(rootView: detailsView)
         navigationController.pushViewController(vc, animated: true)
         
-        return vc
+        return navigationController
     }
     
 }
