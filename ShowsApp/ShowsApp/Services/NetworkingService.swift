@@ -28,6 +28,7 @@ final class NetworkingService: ObservableObject, NetworkingServiceProtocol {
                 if let data = data {
                     // Parse the data
                     do {
+//                        print(String(data: data, encoding: .utf8))
                         let json = try JSONDecoder().decode(T.self, from: data)
                         completion(.success(json))
                     }

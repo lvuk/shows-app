@@ -45,7 +45,7 @@ struct Show: Codable, Identifiable, Equatable {
     let url: String
     let name: String
     let type: String
-    let language: String
+    let language: String?
     let genres: [String]
     let premiered: String?
     let summary: String?
