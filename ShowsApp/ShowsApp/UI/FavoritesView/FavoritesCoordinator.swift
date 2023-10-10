@@ -12,6 +12,11 @@ import SwiftUI
 final class FavoritesCoordinator: Coordinator {
     
     private var navigationController: BaseNavigationController = BaseNavigationController()
+    let serviceFactory: ServiceFactory
+    
+    init(serviceFactory: ServiceFactory) {
+        self.serviceFactory = serviceFactory
+    }
     
     func start() -> UIViewController {
         //do smth
@@ -20,12 +25,12 @@ final class FavoritesCoordinator: Coordinator {
     
     private func createFavoritesController() -> UIViewController {
         
-        let vm = FavoritesViewModel()
+        let vm = FavoritesViewModel(favoritesService: serviceFactory.favoriteService)
         let favoritesView = FavoritesView(viewModel: vm)
         let vc = UIHostingController(rootView: favoritesView)
         navigationController.pushViewController(vc, animated: true)
         
-        return vc
+        return navigationController
     }
     
 }

@@ -39,12 +39,17 @@ final class RootCoordinator: Coordinator {
         return showRootView()
     }
     
+    let serviceFactory: ServiceFactory
+    init(serviceFactory: ServiceFactory) {
+        self.serviceFactory = serviceFactory
+    }
+    
     private func showRootView() -> UIViewController {
         let tabBarController = UITabBarController()
         
-        let searchCoordinator = SearchCoordinator()
-        let favoritesCoordinator = FavoritesCoordinator()
-        let homeCoordinator = HomeCoordinator()
+        let searchCoordinator = SearchCoordinator(serviceFactory: serviceFactory)
+        let favoritesCoordinator = FavoritesCoordinator(serviceFactory: serviceFactory)
+        let homeCoordinator = HomeCoordinator(serviceFactory: serviceFactory)
         
 //        let searchTab = UIHostingController(rootView: SearchView(coordinator: searchCoordinator))
 //        let favoritesTab = UIHostingController(rootView: FavoritesView())

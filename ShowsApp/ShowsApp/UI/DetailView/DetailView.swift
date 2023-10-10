@@ -8,21 +8,30 @@
 import SwiftUI
 
 struct DetailView: View {
-    @ObservedObject var viewModel = DetailsViewModel()
-    let show: Show
+    @ObservedObject var viewModel: DetailsViewModel
     
     var body: some View {
         ScrollView {
             VStack{
                 ZStack(alignment: .topLeading){
-                    AsyncImageDetailMain(show: show)
-                    FavoriteComponent()
-                        .onTapGesture {
-                            //
-                        }
+                    AsyncImageDetailMain(show: viewModel.show)
+//                    FavoriteComponent(show: viewModel.show)
+                    Button {
+                        print("cliked")
+                        viewModel.toggleFavorites()
+                    } label: {
+                        Image(systemName: viewModel.isFavorite ? "heart.fill" : "heart")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 18, height: 18)
+                            .padding(8)
+                            .background(Color.primaryDarkGrey)
+                            .clipShape(RoundedRectangle(cornerRadius: 5))
+                            .padding([.leading, .top], 5)
+                    }
                 }
                 
-                Text("\(show.summary?.removeHTMLTag() ?? "" )")
+                Text("\(viewModel.show.summary?.removeHTMLTag() ?? "" )")
                     .font(.footnote)
                     .padding(.vertical, 3)
                     .padding(.horizontal, 10)
@@ -51,7 +60,7 @@ struct DetailView: View {
                 ZStack{
                     Color.primaryDarkGrey
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack{
+                        HStack(alignment: .center){
                             ForEach(viewModel.cast) { actor in
                                 VStack {
                                     AsyncImageDetailViewCast(actor: actor)
@@ -68,20 +77,20 @@ struct DetailView: View {
             }
         }
         .background(Color.black)
-        .navigationTitle(show.name)
+        .navigationTitle(viewModel.show.name)
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            viewModel.fetchCast(id: show.id)
+            viewModel.fetchCast(id: viewModel.show.id)
             print(viewModel.cast)
-            print(show.id)
+            print(viewModel.show.id)
         }
         .preferredColorScheme(.dark)
         
     }
 }
 
-struct DetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailView(show: Show.example)
-    }
-}
+//struct DetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DetailView(viewModel: DetailsViewModel(show: .example, favoriteService: ))
+//    }
+//}

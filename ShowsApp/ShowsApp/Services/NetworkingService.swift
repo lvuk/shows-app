@@ -103,10 +103,6 @@ final class NetworkingService: ObservableObject, NetworkingServiceProtocol {
             }
         }
     }
-    
-    
-    
-
 }
 
 extension NetworkingService {

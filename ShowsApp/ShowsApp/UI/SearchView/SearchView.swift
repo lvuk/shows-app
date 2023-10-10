@@ -25,6 +25,7 @@ struct SearchView: View {
             
             ZStack {
                 Color.primaryBlack
+                    .ignoresSafeArea()
                 if viewModel.shows.isEmpty {
                     VStack{
                         Text("You messed up!")
@@ -38,6 +39,7 @@ struct SearchView: View {
                 }
                 
             }
+            
         }
         .onAppear {
             if viewModel.searchText.isEmpty {

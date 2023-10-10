@@ -23,7 +23,15 @@ struct ScheduleShow: Codable, Identifiable {
     var airtime: String?
 }
 
-struct Show: Codable, Identifiable {
+struct Show: Codable, Identifiable, Equatable {
+    static func == (lhs: Show, rhs: Show) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    static func < (lhs: Show, rhs: Show) -> Bool {
+        lhs.name >= rhs.name
+    }
+    
     struct Schedule: Codable {
         let time: String
         let days: [String]

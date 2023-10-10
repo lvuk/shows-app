@@ -8,9 +8,19 @@
 import SwiftUI
 
 struct FavoritesView: View {
-    @ObservedObject var viewModel = FavoritesViewModel()
+    @ObservedObject var viewModel = FavoritesViewModel(favoritesService: FavoriteService(persistenceService: PersistenceService()))
+    
     var body: some View {
-            Text("FAVORITES")
+        VStack {
+            ScrollView {
+                ForEach(viewModel.favoriteShows) { show in
+                    Text(show.name)
+                }
+            }
+        }
+        .onAppear {
+            viewModel.refresh()
+        }
     }
         
 }

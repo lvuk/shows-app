@@ -12,7 +12,25 @@ import SwiftUI
 final class DetailsViewModel: ObservableObject {
     @ObservedObject var networkingService = NetworkingService()
     
+    @Published var show: Show
+    @Published var isFavorite: Bool
     @Published var cast: [Person] = [Person]()
+    
+    private let favoriteService: FavoriteServiceProtocol
+    init(show: Show, favoriteService: FavoriteServiceProtocol) {
+       self.favoriteService = favoriteService
+       self.show = show
+       self.isFavorite = favoriteService.isFavorite(show: show)
+   }
+    
+    func toggleFavorites() {
+        isFavorite = favoriteService.toggleFavorite(show: show).isAdded
+        objectWillChange.send()
+    }
+            
+    func refresh() {
+        isFavorite = favoriteService.isFavorite(show: show)
+    }
     
 }
 

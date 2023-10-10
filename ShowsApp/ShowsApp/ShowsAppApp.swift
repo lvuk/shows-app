@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct ShowsAppApp: App {
-    var body: some Scene {
-        WindowGroup {
-            RootView()
-        }
-    }
-}
+//struct ShowsAppApp: App {
+//    var body: some Scene {
+//        WindowGroup {
+//            RootView()
+//        }
+//    }
+//}

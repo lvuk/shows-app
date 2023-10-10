@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		5A06479F2ACC1ACD00459C47 /* HomeViewScheduleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A06479E2ACC1ACD00459C47 /* HomeViewScheduleComponent.swift */; };
 		5A0647A12ACD95F100459C47 /* FavoriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0647A02ACD95F100459C47 /* FavoriteComponent.swift */; };
+		5A0647A42AD4521300459C47 /* FavoriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0647A32AD4521300459C47 /* FavoriteService.swift */; };
+		5A0647A62AD452C900459C47 /* PersistanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0647A52AD452C900459C47 /* PersistanceService.swift */; };
+		5A0647AA2AD5221800459C47 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0647A92AD5221800459C47 /* ServiceFactory.swift */; };
 		5A6167812AB9F5380041336A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6167802AB9F5380041336A /* Colors.swift */; };
 		5A6167842ABAD5D10041336A /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6167832ABAD5D10041336A /* SearchBarView.swift */; };
 		5A6167862ABAF0490041336A /* SearchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6167852ABAF0490041336A /* SearchListView.swift */; };
@@ -46,6 +49,9 @@
 /* Begin PBXFileReference section */
 		5A06479E2ACC1ACD00459C47 /* HomeViewScheduleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewScheduleComponent.swift; sourceTree = "<group>"; };
 		5A0647A02ACD95F100459C47 /* FavoriteComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteComponent.swift; sourceTree = "<group>"; };
+		5A0647A32AD4521300459C47 /* FavoriteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteService.swift; sourceTree = "<group>"; };
+		5A0647A52AD452C900459C47 /* PersistanceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceService.swift; sourceTree = "<group>"; };
+		5A0647A92AD5221800459C47 /* ServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
 		5A6167802AB9F5380041336A /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		5A6167832ABAD5D10041336A /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		5A6167852ABAF0490041336A /* SearchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListView.swift; sourceTree = "<group>"; };
@@ -241,6 +247,9 @@
 			children = (
 				5AE3CC662AB9A534004D2ACD /* NetworkConfiguration.swift */,
 				5AE3CC682AB9A66D004D2ACD /* NetworkingService.swift */,
+				5A0647A32AD4521300459C47 /* FavoriteService.swift */,
+				5A0647A52AD452C900459C47 /* PersistanceService.swift */,
+				5A0647A92AD5221800459C47 /* ServiceFactory.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -330,6 +339,7 @@
 				5A6167842ABAD5D10041336A /* SearchBarView.swift in Sources */,
 				5A6167AC2AC566050041336A /* HomeViewModel.swift in Sources */,
 				5A6167812AB9F5380041336A /* Colors.swift in Sources */,
+				5A0647A62AD452C900459C47 /* PersistanceService.swift in Sources */,
 				5A0647A12ACD95F100459C47 /* FavoriteComponent.swift in Sources */,
 				5AE3CC6F2AB9AC51004D2ACD /* SearchViewModel.swift in Sources */,
 				5A6167972ABC6B8B0041336A /* HomeView.swift in Sources */,
@@ -349,7 +359,9 @@
 				5A61678A2ABC592F0041336A /* SearchListComponent.swift in Sources */,
 				5A6167942ABC620B0041336A /* FavoritesView.swift in Sources */,
 				5A61679A2AC425F40041336A /* CoordinatorProtocol.swift in Sources */,
+				5A0647AA2AD5221800459C47 /* ServiceFactory.swift in Sources */,
 				5A6167AA2AC564640041336A /* FavoritesViewModel.swift in Sources */,
+				5A0647A42AD4521300459C47 /* FavoriteService.swift in Sources */,
 				5AE3CC6D2AB9AA75004D2ACD /* SearchView.swift in Sources */,
 				5A6167AE2AC566370041336A /* HomeCoordinator.swift in Sources */,
 				5A61679E2AC427220041336A /* SearchCoordinator.swift in Sources */,

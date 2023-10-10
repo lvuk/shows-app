@@ -14,10 +14,7 @@ struct HomeViewShowComponent: View {
         VStack(alignment: .leading) {
             ZStack(alignment: .topLeading){
                 CustomAsyncImage(show: show, width: 200, height: 280)
-                FavoriteComponent()
-                    .onTapGesture {
-                        //
-                    }
+                FavoriteComponent(show: show)
             }
             
             VStack(alignment: .leading) {

@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct FavoriteComponent: View {
+    let show: Show
+    let viewModel = FavoritesViewModel(favoritesService: FavoriteService(persistenceService: PersistenceService()))
+    
     var body: some View {
         Button {
-            // add to favorites
+            print("cliked")
+            viewModel.toggleFavorites(show: show)
         } label: {
             Image(systemName: "heart.fill")
                 .resizable()
@@ -19,16 +23,13 @@ struct FavoriteComponent: View {
                 .padding(8)
                 .background(Color.primaryDarkGrey)
                 .clipShape(RoundedRectangle(cornerRadius: 5))
-                .overlay {
-                    
-                }
                 .padding([.leading, .top], 5)
         }
     }
 }
 
-struct FavoriteComponent_Previews: PreviewProvider {
-    static var previews: some View {
-        FavoriteComponent()
-    }
-}
+//struct FavoriteComponent_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FavoriteComponent()
+//    }
+//}

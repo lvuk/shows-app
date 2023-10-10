@@ -19,7 +19,7 @@ final class SearchViewModel: ObservableObject {
 }
 
 
-extension SearchViewModel{
+extension SearchViewModel {
     func fetchSearchData(query: String) {
         networkinService.fetchSearchData(query: query) { [weak self] result in
             switch result {

@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        self.window = window
 //        window.makeKeyAndVisible()
 
-        let rootCoordinator = RootCoordinator()
+        let rootCoordinator = RootCoordinator(serviceFactory: ((UIApplication.shared.delegate) as! AppDelegate).serviceFactory)
         window = UIWindow(windowScene: windowScene)
         window?.overrideUserInterfaceStyle = .dark
         window?.rootViewController = rootCoordinator.start()

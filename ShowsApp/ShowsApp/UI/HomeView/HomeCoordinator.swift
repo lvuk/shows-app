@@ -11,6 +11,11 @@ import SwiftUI
 
 final class HomeCoordinator: Coordinator {
     private var navigationController: BaseNavigationController = BaseNavigationController()
+    let serviceFactory: ServiceFactory
+    
+    init(serviceFactory: ServiceFactory) {
+        self.serviceFactory = serviceFactory
+    }
     
     func start() -> UIViewController {
         //do smth
@@ -18,7 +23,7 @@ final class HomeCoordinator: Coordinator {
     }
     
     private func createHomeController() -> UIViewController {
-        let viewModel = HomeViewModel()
+        let viewModel = HomeViewModel(favoritesService: serviceFactory.favoriteService)
         let homeView = HomeView(viewModel: viewModel)
         let vc = UIHostingController(rootView: homeView)
         
@@ -41,8 +46,8 @@ final class HomeCoordinator: Coordinator {
     
     private func createDetailsView(of show: Show) -> UIViewController {
         
-        let vm = DetailsViewModel()
-        let detailsView = DetailView(viewModel: vm, show: show)
+        let vm = DetailsViewModel(show: show, favoriteService: serviceFactory.favoriteService)
+        let detailsView = DetailView(viewModel: vm)
         let vc = UIHostingController(rootView: detailsView)
         navigationController.pushViewController(vc, animated: true)
         
