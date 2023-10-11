@@ -12,6 +12,8 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    
+    var rootCoordinator: Coordinator?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = scene as? UIWindowScene else { return }
@@ -22,11 +24,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        window.rootViewController = UIHostingController(rootView: rootView)
 //        self.window = window
 //        window.makeKeyAndVisible()
-
-        let rootCoordinator = RootCoordinator(serviceFactory: ((UIApplication.shared.delegate) as! AppDelegate).serviceFactory)
+        
+        rootCoordinator = RootCoordinator(serviceFactory: ((UIApplication.shared.delegate) as! AppDelegate).serviceFactory)
         window = UIWindow(windowScene: windowScene)
         window?.overrideUserInterfaceStyle = .dark
-        window?.rootViewController = rootCoordinator.start()
+        window?.rootViewController = rootCoordinator!.start()
         window?.makeKeyAndVisible()
     }
 }

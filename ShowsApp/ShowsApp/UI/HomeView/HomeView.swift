@@ -47,7 +47,7 @@ struct HomeView: View {
                             }
                         }
                         .padding(.horizontal, 10)
-                        .padding(.vertical, 10)
+                        .padding(.vertical, 8)
                         
                         ScrollView(.horizontal, showsIndicators: false) {
                             LazyHStack(spacing: 10) {

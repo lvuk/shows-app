@@ -29,7 +29,7 @@ final class FavoritesViewModel: ObservableObject {
     }
     
     func toggleFavorites(show: Show) {
-        //        
+        
     }
 }
 

@@ -27,10 +27,8 @@ final class HomeCoordinator: Coordinator {
         let homeView = HomeView(viewModel: viewModel)
         let vc = UIHostingController(rootView: homeView)
         
-        viewModel.onShowTapped = { show in
-            print("Tu sam")
-            _ = self.createDetailsView(of: show)
-            print("da")
+        viewModel.onShowTapped = { [weak self] show in
+            _ = self?.createDetailsView(of: show)
         }
         
         navigationController.navigationBar.prefersLargeTitles = true

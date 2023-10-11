@@ -48,8 +48,11 @@ final class RootCoordinator: Coordinator {
         let tabBarController = UITabBarController()
         
         let searchCoordinator = SearchCoordinator(serviceFactory: serviceFactory)
+        childCoordinators?.append(searchCoordinator)
         let favoritesCoordinator = FavoritesCoordinator(serviceFactory: serviceFactory)
+        childCoordinators?.append(favoritesCoordinator)
         let homeCoordinator = HomeCoordinator(serviceFactory: serviceFactory)
+        childCoordinators?.append(homeCoordinator)
         
 //        let searchTab = UIHostingController(rootView: SearchView(coordinator: searchCoordinator))
 //        let favoritesTab = UIHostingController(rootView: FavoritesView())

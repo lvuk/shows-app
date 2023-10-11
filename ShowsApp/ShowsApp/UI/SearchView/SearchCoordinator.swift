@@ -27,8 +27,8 @@ final class SearchCoordinator: Coordinator, ObservableObject {
         let searchView = SearchView(viewModel: viewModel)
         let vc = UIHostingController(rootView: searchView)
         
-        viewModel.onShowTapped = { show in
-            _ = self.createDetailsView(of: show)
+        viewModel.onShowTapped = { [weak self] show in
+            _ = self?.createDetailsView(of: show)
             
         }
         
