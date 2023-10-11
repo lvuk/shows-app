@@ -32,10 +32,6 @@ final class HomeCoordinator: Coordinator {
         }
         
         navigationController.navigationBar.prefersLargeTitles = true
-//        navigationController.isToolbarHidden = false
-        
-//        let showAllButton = UIBarButtonItem(title: "Show all", style: .plain, target: self, action: nil)
-        
         navigationController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: nil)
         
         navigationController.pushViewController(vc, animated: true)

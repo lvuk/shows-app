@@ -35,9 +35,3 @@ struct HomeViewScheduleComponent: View {
         }
     }
 }
-
-//struct HomeViewScheduleComponent_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HomeViewScheduleComponent(show: .example, viewModel: HomeViewModel())
-//    }
-//}

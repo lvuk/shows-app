@@ -9,31 +9,12 @@ import Foundation
 import UIKit
 import SwiftUI
 
-final class BaseNavigationController: UINavigationController {
-    
-    init() {
-        super.init(nibName: nil, bundle: nil)
-        
-//        let navigationBarAppearance = UINavigationBarAppearance()
-//        navigationBarAppearance.backgroundColor = UIColor(named: "PrimaryDarkBlack")
-//        navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-//
-//
-//        self.navigationBar.standardAppearance = navigationBarAppearance
-//        self.navigationBar.scrollEdgeAppearance = navigationBarAppearance
-//        self.navigationBar.compactAppearance = navigationBarAppearance
-//        self.navigationBar.compactScrollEdgeAppearance = navigationBarAppearance
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-}
+final class BaseNavigationController: UINavigationController { }
 
 
 final class RootCoordinator: Coordinator {
     
-    var childCoordinators: [Coordinator]?
+    var childCoordinators = [Coordinator]()
     
     func start() -> UIViewController {
         return showRootView()
@@ -48,15 +29,12 @@ final class RootCoordinator: Coordinator {
         let tabBarController = UITabBarController()
         
         let searchCoordinator = SearchCoordinator(serviceFactory: serviceFactory)
-        childCoordinators?.append(searchCoordinator)
+        childCoordinators.append(searchCoordinator)
         let favoritesCoordinator = FavoritesCoordinator(serviceFactory: serviceFactory)
-        childCoordinators?.append(favoritesCoordinator)
+        childCoordinators.append(favoritesCoordinator)
         let homeCoordinator = HomeCoordinator(serviceFactory: serviceFactory)
-        childCoordinators?.append(homeCoordinator)
+        childCoordinators.append(homeCoordinator)
         
-//        let searchTab = UIHostingController(rootView: SearchView(coordinator: searchCoordinator))
-//        let favoritesTab = UIHostingController(rootView: FavoritesView())
-//        let homeTab = UIHostingController(rootView: HomeView())
         let searchController = searchCoordinator.start()
         let favoritesController = favoritesCoordinator.start()
         let homeController = homeCoordinator.start()
@@ -72,9 +50,7 @@ final class RootCoordinator: Coordinator {
         //MARK: - Customization
         //icons & background
         let tabBarAppearance = UITabBarAppearance()
-        
-//        tabBarController.tabBar.backgroundColor = UIColor(named: "PrimaryDarkGrey")
-        
+
         tabBarAppearance.backgroundColor = UIColor(named: "PrimaryDarkGrey")
         
         tabBarAppearance.stackedLayoutAppearance.normal.iconColor = UIColor(named: "PrimaryLightGrey")

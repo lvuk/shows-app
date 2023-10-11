@@ -40,7 +40,7 @@ extension HomeViewModel {
                 DispatchQueue.main.async {
                     self?.shows = searchShows.map { $0.show }
                 }
-//                print("SUCCESS: \(String(describing: self?.shows))")
+                print("SUCCESS: Shows")
             case .failure(let error):
                 print("ERROR: \(error.localizedDescription)")
             }

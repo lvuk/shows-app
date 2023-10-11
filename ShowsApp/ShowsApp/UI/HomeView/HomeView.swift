@@ -14,22 +14,12 @@ struct HomeView: View {
         ZStack {
             Color.black
             VStack(alignment: .leading){
-//                HStack(alignment: .lastTextBaseline) {
-//                    Text("Shows")
-//                        .font(.largeTitle.bold())
-//                    Spacer()
-//                    Button("Show all") {}
-//                }
-//                .padding(.horizontal, 10)
-//                .padding(.vertical, -5)
-                    
                 ScrollView {
                     VStack {
                         ScrollView(.horizontal, showsIndicators: false) {
                             LazyHStack(spacing: 10) {
                                 ForEach(viewModel.shows) { show in
                                     HomeViewShowComponent(show: show, viewModel: viewModel)
-            //                        Text("\(show.name)")
                                 }
                             }
                         }

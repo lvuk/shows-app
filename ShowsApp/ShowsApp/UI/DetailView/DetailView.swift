@@ -15,7 +15,6 @@ struct DetailView: View {
             VStack{
                 ZStack(alignment: .topLeading){
                     AsyncImageDetailMain(show: viewModel.show)
-//                    FavoriteComponent(show: viewModel.show)
                     Button {
                         print("cliked")
                         viewModel.toggleFavorites()
@@ -88,9 +87,3 @@ struct DetailView: View {
         
     }
 }
-
-//struct DetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DetailView(viewModel: DetailsViewModel(show: .example, favoriteService: ))
-//    }
-//}

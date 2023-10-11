@@ -46,11 +46,3 @@ struct HomeViewShowComponent: View {
         }
     }
 }
-
-//struct HomeViewShowComponent_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HomeViewShowComponent(show: .example)
-//            .background(Color.primaryDarkGrey)
-//            .foregroundColor(.white)
-//    }
-//}

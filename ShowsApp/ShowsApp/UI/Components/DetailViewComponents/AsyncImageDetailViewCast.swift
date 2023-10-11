@@ -42,9 +42,3 @@ struct AsyncImageDetailViewCast: View {
         }
     }
 }
-
-//struct AsyncImageDetailViewCast_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AsyncImageDetailViewCast()
-//    }
-//}

@@ -27,9 +27,3 @@ struct FavoriteComponent: View {
         }
     }
 }
-
-//struct FavoriteComponent_Previews: PreviewProvider {
-//    static var previews: some View {
-//        FavoriteComponent()
-//    }
-//}
