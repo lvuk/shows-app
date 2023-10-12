@@ -35,7 +35,8 @@ struct AsyncImageDetailMain: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 80, height: 120)
-                    .frame(height: 400)
+                    .frame(width: 350, height: 400)
+                    
         }
     }
 }
