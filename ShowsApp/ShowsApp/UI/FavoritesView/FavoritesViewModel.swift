@@ -17,7 +17,7 @@ final class FavoritesViewModel: ObservableObject {
     
     var onShowTapped: ((Show) -> Void)?
     
-    private let favoritesService: FavoriteServiceProtocol
+    let favoritesService: FavoriteServiceProtocol
     
     init(favoritesService: FavoriteServiceProtocol) {
         self.favoritesService = favoritesService

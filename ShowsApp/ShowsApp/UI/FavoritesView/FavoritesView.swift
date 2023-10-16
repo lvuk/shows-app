@@ -27,45 +27,20 @@ struct FavoritesView: View {
             ScrollView {
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())]) {
                     ForEach(viewModel.favoriteShows) { show in
-                        VStack(alignment: .leading) {
-                            ZStack(alignment: .topLeading){
-                                CustomAsyncImage(show: show, width: 180, height: 260)
-                                FavoriteComponent(viewModel: FavoriteComponentViewModel(show: show, favoritesViewModel: viewModel))
+                        FavoritesViewComponent(favoriteService: viewModel.favoritesService, show: show)
+                            .onTapGesture {
+                                viewModel.onShowTapped?(show)
                             }
-                            
-                            VStack(alignment: .leading) {
-                                HStack {
-                                    Image(systemName: "star.fill")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 16, height: 16)
-                                        .foregroundColor(.primaryYellow)
-                                    
-                                    Text("\(show.rating?.average?.formatted() ?? "N/A")")
-                                        .font(.system(size: 14))
-                                }
-                                
-                                Text("\(show.name)")
-                                    .font(.subheadline)
-                                    .lineLimit(1)
-                                    .foregroundColor(Color.primaryWhite)
-                                    .opacity(0.7)
-                                    .padding(.bottom)
-                                    .frame(maxWidth: 160, alignment: .leading)
-                            }
-                            .padding(.leading, 10)
-                        }
-                        .background(Color.primaryDarkGrey)
-                        .cornerRadius(10)
-                        .onTapGesture {
-                            viewModel.onShowTapped?(show)
-                        }
                     }
                 }
-                .padding(.horizontal, 5)
+//                .padding(.horizontal, 5)
                 .onAppear {
                     viewModel.refresh()
-                    print(viewModel.favoriteShows.count)
+                }
+                .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name(rawValue: "showUnfavorited"))) { _ in
+                    withAnimation {
+                        viewModel.refresh()
+                    }
                 }
                 .navigationTitle("Favorites")
             }

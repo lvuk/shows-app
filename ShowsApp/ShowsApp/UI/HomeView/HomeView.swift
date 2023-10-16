@@ -17,9 +17,12 @@ struct HomeView: View {
                 ScrollView {
                     VStack {
                         ScrollView(.horizontal, showsIndicators: false) {
-                            LazyHStack(spacing: 10) {
+                            HStack(spacing: 10) {
                                 ForEach(viewModel.shows) { show in
-                                    HomeViewShowComponent(show: show, viewModel: viewModel)
+                                    HomeViewShowComponent(favoriteService: viewModel.favoritesService, show: show)
+                                        .onTapGesture {
+                                            viewModel.onShowTapped?(show)
+                                        }
                                 }
                             }
                         }
@@ -42,7 +45,7 @@ struct HomeView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             LazyHStack(spacing: 10) {
                                 ForEach(viewModel.schedule) { show in
-                                    HomeViewScheduleComponent(show: show, viewModel: viewModel)
+                                    HomeViewScheduleComponent(favoriteService: viewModel.favoritesService, show: show)
                                 }
                             }
                             .padding(.bottom, 10)
@@ -61,8 +64,8 @@ struct HomeView: View {
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-            HomeView(viewModel: HomeViewModel(favoritesService: FavoriteService(persistenceService: PersistenceService())))
-    }
-}
+//struct HomeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//            HomeView(viewModel: HomeViewModel(favoritesService: FavoriteService(persistenceService: PersistenceService())))
+//    }
+//}

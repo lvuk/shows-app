@@ -25,7 +25,7 @@ final class HomeViewModel: ObservableObject {
         return today
     }
     
-    private let favoritesService: FavoriteServiceProtocol
+    let favoritesService: FavoriteServiceProtocol
     
     init(favoritesService: FavoriteServiceProtocol) {
         self.favoritesService = favoritesService

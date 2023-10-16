@@ -1,34 +1,37 @@
 //
-//  HomeViewShowComponent.swift
+//  FavoritesViewComponent.swift
 //  ShowsApp
 //
-//  Created by Luka Vuk on 02.10.2023..
+//  Created by Luka Vuk on 16.10.2023..
 //
 
 import SwiftUI
 
-struct HomeViewShowComponent: View {
+struct FavoritesViewComponent: View {
     let show: Show
-    let favoriteService: FavoriteServiceProtocol
-    
     @State var isFavorite = false
-    @State private var favorites: [Show]
+    let favoriteService: FavoriteServiceProtocol
     
     init(favoriteService: FavoriteServiceProtocol, show: Show) {
         self.favoriteService = favoriteService
         self.show = show
-        _favorites = State(initialValue: favoriteService.favorites)
+    }
+    
+    func refresh() {
+        isFavorite = favoriteService.isFavorite(show: show)
     }
     
     var body: some View {
         VStack(alignment: .leading) {
             ZStack(alignment: .topLeading){
-                CustomAsyncImage(show: show, width: 200, height: 280)
-                
+                CustomAsyncImage(show: show, width: 190, height: 260)
+
                 Button {
                     isFavorite.toggle()
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "favorite"), object: isFavorite)
-                    
+
+                    if !isFavorite {
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showUnfavorited"), object: show)
+                    }
                     _ = favoriteService.toggleFavorite(show: show)
                 } label: {
                     FavoriteComponent(isFavorite: $isFavorite)
@@ -53,14 +56,20 @@ struct HomeViewShowComponent: View {
                     .foregroundColor(Color.primaryWhite)
                     .opacity(0.7)
                     .padding(.bottom)
-                    .frame(maxWidth: 180, alignment: .leading)
+                    .frame(maxWidth: 169, alignment: .leading)
             }
             .padding(.leading, 10)
         }
         .background(Color.primaryDarkGrey)
+        .cornerRadius(10)
         .onAppear {
             isFavorite = favoriteService.isFavorite(show: show)
         }
-        .cornerRadius(10)
     }
 }
+
+//struct FavoritesViewComponent_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FavoritesViewComponent()
+//    }
+//}
