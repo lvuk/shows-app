@@ -10,11 +10,12 @@ import SwiftUI
 struct HomeViewShowComponent: View {
     let show: Show
     let viewModel: HomeViewModel
+    
     var body: some View {
         VStack(alignment: .leading) {
             ZStack(alignment: .topLeading){
                 CustomAsyncImage(show: show, width: 200, height: 280)
-                FavoriteComponent(show: show)
+                FavoriteComponent(viewModel: FavoriteComponentViewModel(show: show))
             }
             
             VStack(alignment: .leading) {

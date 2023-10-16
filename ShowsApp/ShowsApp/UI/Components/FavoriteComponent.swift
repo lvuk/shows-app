@@ -8,15 +8,13 @@
 import SwiftUI
 
 struct FavoriteComponent: View {
-    let show: Show
-    let viewModel = FavoritesViewModel(favoritesService: FavoriteService(persistenceService: PersistenceService()))
+    @ObservedObject var viewModel: FavoriteComponentViewModel
     
     var body: some View {
         Button {
-            print("cliked")
-            viewModel.toggleFavorites(show: show)
+            viewModel.toggleFavorite()
         } label: {
-            Image(systemName: "heart.fill")
+            Image(systemName: viewModel.isFavorite ? "heart.fill" : "heart")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 18, height: 18)

@@ -12,6 +12,7 @@
 		5A0647A42AD4521300459C47 /* FavoriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0647A32AD4521300459C47 /* FavoriteService.swift */; };
 		5A0647A62AD452C900459C47 /* PersistanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0647A52AD452C900459C47 /* PersistanceService.swift */; };
 		5A0647AA2AD5221800459C47 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0647A92AD5221800459C47 /* ServiceFactory.swift */; };
+		5A0647AE2AD9495300459C47 /* FavoriteComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0647AD2AD9495300459C47 /* FavoriteComponentViewModel.swift */; };
 		5A6167812AB9F5380041336A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6167802AB9F5380041336A /* Colors.swift */; };
 		5A6167842ABAD5D10041336A /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6167832ABAD5D10041336A /* SearchBarView.swift */; };
 		5A6167862ABAF0490041336A /* SearchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6167852ABAF0490041336A /* SearchListView.swift */; };
@@ -52,6 +53,7 @@
 		5A0647A32AD4521300459C47 /* FavoriteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteService.swift; sourceTree = "<group>"; };
 		5A0647A52AD452C900459C47 /* PersistanceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceService.swift; sourceTree = "<group>"; };
 		5A0647A92AD5221800459C47 /* ServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
+		5A0647AD2AD9495300459C47 /* FavoriteComponentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteComponentViewModel.swift; sourceTree = "<group>"; };
 		5A6167802AB9F5380041336A /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		5A6167832ABAD5D10041336A /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		5A6167852ABAF0490041336A /* SearchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListView.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				5A6167802AB9F5380041336A /* Colors.swift */,
 				5A6167AF2AC59F4D0041336A /* CustomAsyncImage.swift */,
 				5A0647A02ACD95F100459C47 /* FavoriteComponent.swift */,
+				5A0647AD2AD9495300459C47 /* FavoriteComponentViewModel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				5A0647AA2AD5221800459C47 /* ServiceFactory.swift in Sources */,
 				5A6167AA2AC564640041336A /* FavoritesViewModel.swift in Sources */,
 				5A0647A42AD4521300459C47 /* FavoriteService.swift in Sources */,
+				5A0647AE2AD9495300459C47 /* FavoriteComponentViewModel.swift in Sources */,
 				5AE3CC6D2AB9AA75004D2ACD /* SearchView.swift in Sources */,
 				5A6167AE2AC566370041336A /* HomeCoordinator.swift in Sources */,
 				5A61679E2AC427220041336A /* SearchCoordinator.swift in Sources */,
